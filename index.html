@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guardian AI - Premium AI Emergency Assistance</title>
+  <meta name="description" content="Guardian AI transforms panic into a clear recovery journey with personalized action plans, verified information, and intelligent assistance.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Particle background canvas -->
+  <canvas id="particle-canvas"></canvas>
+
+  <!-- Global Application Container -->
+  <div id="app-container">
+
+    <!-- 1. HERO SECTION -->
+    <section id="hero-section">
+      <div class="hero-glow"></div>
+      <div class="hero-content">
+        <div class="hero-left">
+          <div class="hero-logo">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+            Guardian AI
+          </div>
+          <h1>When emergencies happen,<br><span>clarity matters.</span></h1>
+          <p class="hero-subheading">
+            Guardian AI transforms panic into a clear recovery journey with personalized action plans, verified information, and intelligent assistance.
+          </p>
+          <div class="hero-actions">
+            <button class="btn btn-primary" id="btn-hero-start">
+              <span>Start Emergency Assistance</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </button>
+            <button class="btn btn-secondary" id="btn-hero-check">
+              <span>Check Suspicious Content</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            </button>
+          </div>
+        </div>
+        <div class="hero-right">
+          <div class="hero-image-container">
+            <img src="assets/hero_guardian.png" alt="Guardian AI Interface Visual">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. MAIN DASHBOARD WRAPPER (HIDDEN INITIALLY) -->
+    <div id="dashboard-wrapper" style="display: none;">
+      
+      <!-- LEFT SIDEBAR -->
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <div class="sidebar-logo">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+            <span>Guardian AI</span>
+          </div>
+        </div>
+
+        <ul class="sidebar-menu">
+          <li class="sidebar-item active" data-view="view-home">
+            <a href="#">
+              <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="9" rx="1"></rect><rect x="14" y="3" width="7" height="5" rx="1"></rect><rect x="14" y="12" width="7" height="9" rx="1"></rect><rect x="3" y="16" width="7" height="5" rx="1"></rect></svg>
+              <span>Home</span>
+            </a>
+          </li>
+          <li class="sidebar-item" data-view="view-lost-phone">
+            <a href="#">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+              <span>Lost Phone</span>
+            </a>
+          </li>
+          <li class="sidebar-item" data-view="view-cyber-fraud">
+            <a href="#">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+              <span>Cyber Fraud</span>
+            </a>
+          </li>
+          <li class="sidebar-item" data-view="view-lost-documents">
+            <a href="#">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+              <span>Lost Documents</span>
+            </a>
+          </li>
+          <li class="sidebar-item" data-view="view-travel-emergency">
+            <a href="#">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="4"></line><line x1="8" y1="2" x2="8" y2="4"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+              <span>Travel Emergency</span>
+            </a>
+          </li>
+          <li class="sidebar-item" data-view="view-fake-detector">
+            <a href="#">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+              <span>Fake Content</span>
+            </a>
+          </li>
+          <li class="sidebar-item" data-view="view-safety-profile">
+            <a href="#">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+              <span>Safety Vault</span>
+            </a>
+          </li>
+          <li class="sidebar-item" data-view="view-history">
+            <a href="#">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+              <span>Case History</span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="sidebar-footer">
+          <div class="user-avatar">SA</div>
+          <div class="user-info">
+            <h4>Saksh Audichya</h4>
+            <p>Vault Secured</p>
+          </div>
+        </div>
+      </aside>
+
+      <!-- MAIN CONTENT AREA -->
+      <main class="main-content">
+        
+        <!-- HEADER -->
+        <header class="content-header">
+          <div>
+            <h1 id="page-title">Guardian AI Dashboard</h1>
+            <p id="page-subtitle">Personal Emergency Control Panel</p>
+          </div>
+          <div id="active-emergency-pill" class="active-case-pill safe">
+            <span class="status-dot"></span>
+            <span id="pill-text">No Active Case</span>
+          </div>
+        </header>
+
+        <!-- SUB-VIEWS CONTAINER -->
+        <div class="views-container">
+
+          <!-- 2. HOME CENTRAL VIEW -->
+          <div id="view-home" class="dashboard-view active">
+            <div class="grid-container">
+              
+              <!-- Current Emergency Status Banner -->
+              <div class="card status-banner no-emergency" id="central-status-banner">
+                <div class="banner-left">
+                  <div class="banner-title" id="banner-status-title">No Active Emergency</div>
+                  <div class="banner-details">
+                    <span>Priority: <strong id="banner-priority-val">NONE</strong></span>
+                    <span>Monitoring: <strong id="banner-monitoring-val" style="color:var(--accent-green)">Standby</strong></span>
+                    <span>System state: <strong>Secured</strong></span>
+                  </div>
+                </div>
+                <div class="banner-right">
+                  <button class="btn btn-secondary" id="btn-trigger-panic" style="border-color: var(--accent-coral); color: var(--accent-coral)">
+                    Start Dynamic Test Case
+                  </button>
+                </div>
+              </div>
+
+              <!-- Widget 1: Circular Progress -->
+              <div class="card widget-progress">
+                <h3 class="panel-section-title">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
+                  Recovery Progress
+                </h3>
+                <div class="progress-circle-container">
+                  <svg width="140" height="140">
+                    <circle class="progress-circle-bg" cx="70" cy="70" r="60"></circle>
+                    <circle id="recovery-progress-bar" class="progress-circle-bar" cx="70" cy="70" r="60" stroke-dasharray="377" stroke-dashoffset="377"></circle>
+                  </svg>
+                  <div class="progress-percentage" id="progress-percentage-txt">0%</div>
+                </div>
+                <p class="progress-label" id="progress-desc-txt">No active cases are being tracked</p>
+              </div>
+
+              <!-- Widget 2: AI Recommended Action -->
+              <div class="card widget-action">
+                <div>
+                  <div class="action-header">Recommended Action</div>
+                  <div class="action-title" id="action-title-txt">Setup Profile Security</div>
+                  <p class="action-desc" id="action-desc-txt">Ensure your Safety Vault profile is fully filled out. Add emergency contacts, saved devices, and backup numbers to lock down in future emergencies.</p>
+                </div>
+                <button class="btn btn-primary" id="btn-action-execute">Execute Recommendation</button>
+              </div>
+
+              <!-- Widget 3: Nearby Help Map Preview -->
+              <div class="card widget-map">
+                <h3 class="panel-section-title">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                  Nearby Support
+                </h3>
+                <div class="map-preview">
+                  <div class="mock-map-bg"></div>
+                  <div class="map-pin user"></div>
+                  <div class="map-pin station"></div>
+                  <div class="map-pin hospital"></div>
+                </div>
+                <div class="map-address-list">
+                  <div class="map-address-item">
+                    <span>Local Police HQ</span>
+                    <span class="dist">0.8 km</span>
+                  </div>
+                  <div class="map-address-item">
+                    <span>Apex Trauma Hospital</span>
+                    <span class="dist">1.4 km</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Widget 4: Generated Documents -->
+              <div class="card widget-docs">
+                <h3 class="panel-section-title">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+                  Generated Vault Documents
+                </h3>
+                <div class="docs-list">
+                  <div class="doc-card">
+                    <div class="doc-info">
+                      <div class="doc-icon">
+                        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path></svg>
+                      </div>
+                      <div>
+                        <div class="doc-name">SIM Block Request Draft</div>
+                        <div class="doc-meta">TXT • 1.2 KB • Lost Phone</div>
+                      </div>
+                    </div>
+                    <button class="btn-icon-only btn-view-doc" data-doc="sim_block">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                    </button>
+                  </div>
+                  <div class="doc-card">
+                    <div class="doc-info">
+                      <div class="doc-icon">
+                        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path></svg>
+                      </div>
+                      <div>
+                        <div class="doc-name">Cybercrime FIR Complaint</div>
+                        <div class="doc-meta">TXT • 3.5 KB • Online Fraud</div>
+                      </div>
+                    </div>
+                    <button class="btn-icon-only btn-view-doc" data-doc="cybercrime_fir">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                    </button>
+                  </div>
+                  <div class="doc-card">
+                    <div class="doc-info">
+                      <div class="doc-icon">
+                        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path></svg>
+                      </div>
+                      <div>
+                        <div class="doc-name">Aadhaar Card Re-issue Request</div>
+                        <div class="doc-meta">TXT • 2.1 KB • Lost Document</div>
+                      </div>
+                    </div>
+                    <button class="btn-icon-only btn-view-doc" data-doc="aadhaar_request">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- 3. LOST PHONE DASHBOARD -->
+          <div id="view-lost-phone" class="dashboard-view">
+            <div class="dashboard-grid-split">
+              
+              <div class="dashboard-panel-left">
+                <!-- Device Information Card -->
+                <div class="card">
+                  <h3 class="panel-section-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect></svg>
+                    Primary Device Status
+                  </h3>
+                  <div class="info-row">
+                    <span class="info-label">Device Type</span>
+                    <span class="info-value" id="phone-val-type">iPhone 14 Pro Max (Saksh's Phone)</span>
+                  </div>
+                  <div class="info-row">
+                    <span class="info-label">IMEI Number</span>
+                    <span class="info-value" id="phone-val-imei">357890123456789</span>
+                  </div>
+                  <div class="info-row">
+                    <span class="info-label">Last Known Location</span>
+                    <span class="info-value" id="phone-val-loc">28.6139° N, 77.2090° E (Connaught Place, Delhi)</span>
+                  </div>
+                  <div class="info-row">
+                    <span class="info-label">Last Pinged</span>
+                    <span class="info-value" id="phone-val-time">12 mins ago</span>
+                  </div>
+                </div>
+
+                <!-- Immediate Protection Checklist -->
+                <div class="card">
+                  <h3 class="panel-section-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                    Emergency Response Protocol
+                  </h3>
+                  <div class="checklist-container" id="lost-phone-checklist">
+                    <div class="checklist-item checked" data-progress="20">
+                      <div class="checkbox-custom">
+                        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                      </div>
+                      <div class="checklist-text">
+                        <h4>Track Device</h4>
+                        <p>Locate phone on iCloud/Android Find My Device</p>
+                      </div>
+                    </div>
+                    <div class="checklist-item" data-progress="20">
+                      <div class="checkbox-custom">
+                        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                      </div>
+                      <div class="checklist-text">
+                        <h4>Lock Device Remotely</h4>
+                        <p>Send command to lock screen and write recovery note</p>
+                      </div>
+                    </div>
+                    <div class="checklist-item" data-progress="20">
+                      <div class="checkbox-custom">
+                        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                      </div>
+                      <div class="checklist-text">
+                        <h4>Block SIM Card</h4>
+                        <p>Generate SIM carrier block request and call operator</p>
+                      </div>
+                    </div>
+                    <div class="checklist-item" data-progress="20">
+                      <div class="checkbox-custom">
+                        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                      </div>
+                      <div class="checklist-text">
+                        <h4>Secure Financial & Banking Apps</h4>
+                        <p>Freeze digital banking tokens and remove device access</p>
+                      </div>
+                    </div>
+                    <div class="checklist-item" data-progress="20">
+                      <div class="checkbox-custom">
+                        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                      </div>
+                      <div class="checklist-text">
+                        <h4>Change Accounts Passwords</h4>
+                        <p>Revoke active OAuth tokens for Google, Apple, and social media</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="dashboard-panel-right">
+                <!-- Location Tracker Map -->
+                <div class="card">
+                  <h3 class="panel-section-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    Live Tracker
+                  </h3>
+                  <div class="map-preview" style="height: 180px;">
+                    <div class="mock-map-bg"></div>
+                    <div class="map-pin user" style="top: 40%; left: 50%;"></div>
+                    <div class="map-pin station" style="top: 65%; left: 30%;"></div>
+                  </div>
+                  <p class="progress-label" style="margin-top: 10px; font-size: 0.8rem;">
+                    Approximate accuracy: <strong>± 12 meters</strong>. Nearby police center is located 800m South-West.
+                  </p>
+                </div>
+
+                <!-- Account Security Panel -->
+                <div class="card">
+                  <h3 class="panel-section-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                    Safety Shield status
+                  </h3>
+                  
+                  <div class="security-item">
+                    <div class="security-left">
+                      <div class="security-app-icon">G</div>
+                      <div class="security-title">Google ID</div>
+                    </div>
+                    <span class="security-status-badge badge-safe">Secure</span>
+                  </div>
+                  
+                  <div class="security-item">
+                    <div class="security-left">
+                      <div class="security-app-icon">A</div>
+                      <div class="security-title">Apple ID</div>
+                    </div>
+                    <span class="security-status-badge badge-safe">Secure</span>
+                  </div>
+
+                  <div class="security-item">
+                    <div class="security-left">
+                      <div class="security-app-icon">💳</div>
+                      <div class="security-title">Banking Tokens</div>
+                    </div>
+                    <span class="security-status-badge badge-attention">Attention</span>
+                  </div>
+                </div>
+
+                <!-- Action Button -->
+                <div class="card" style="text-align: center;">
+                  <h4 style="font-family: var(--font-heading); margin-bottom: 12px; font-size: 1rem;">Official Legal Redress</h4>
+                  <p class="progress-label" style="margin-bottom: 16px;">Guardian AI compiles device, IMEI, and timestamp info into a certified local Police FIR report draft.</p>
+                  <button class="btn btn-primary" style="width: 100%" id="btn-gen-fir">Generate Police FIR Draft</button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- 4. ONLINE FRAUD DASHBOARD -->
+          <div id="view-cyber-fraud" class="dashboard-view">
+            <div class="dashboard-grid-split">
+              
+              <div class="dashboard-panel-left">
+                <!-- Fraud details -->
+                <div class="card">
+                  <h3 class="panel-section-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                    Transaction Assessment
+                  </h3>
+                  <div class="form-grid">
+                    <div class="form-group">
+                      <label>Incident Name</label>
+                      <input type="text" class="form-input" id="fraud-input-name" value="Unauthorized Card Swipe">
+                    </div>
+                    <div class="form-group">
+                      <label>Disputed Amount</label>
+                      <input type="text" class="form-input" id="fraud-input-amount" value="₹ 45,200.00">
+                    </div>
+                    <div class="form-group">
+                      <label>Payment Operator</label>
+                      <input type="text" class="form-input" id="fraud-input-bank" value="HDFC Credit Card">
+                    </div>
+                    <div class="form-group">
+                      <label>Disputed Merchant</label>
+                      <input type="text" class="form-input" id="fraud-input-merchant" value="GlobalTechStore Online">
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Immediate protection checklist -->
+                <div class="card">
+                  <h3 class="panel-section-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                    Fund Salvage Actions
+                  </h3>
+                  <div class="checklist-container" id="fraud-checklist">
+                    <div class="checklist-item" data-progress="25">
+                      <div class="checkbox-custom">
+                        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                      </div>
+                      <div class="checklist-text">
+                        <h4>Lock Credit Card / Bank Account</h4>
+                        <p>Disable cards immediately using mobile banking app or calling helpline</p>
+                      </div>
+                    </div>
+                    <div class="checklist-item" data-progress="25">
+                      <div class="checkbox-custom">
+                        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                      </div>
+                      <div class="checklist-text">
+                        <h4>Dispute & Block Transaction</h4>
+                        <p>Initiate chargeback request using HDFC bank dispute form</p>
+                      </div>
+                    </div>
+                    <div class="checklist-item" data-progress="25">
+                      <div class="checkbox-custom">
+                        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                      </div>
+                      <div class="checklist-text">
+                        <h4>Gather Digital Evidence</h4>
+                        <p>Export receipts, screenshot scam chats, and save confirmation emails</p>
+                      </div>
+                    </div>
+                    <div class="checklist-item" data-progress="25">
+                      <div class="checkbox-custom">
+                        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                      </div>
+                      <div class="checklist-text">
+                        <h4>Report to Cybercrime Portal</h4>
+                        <p>Register legal ticket on government portal cybercrime.gov.in</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="dashboard-panel-right">
+                <!-- Evidence Locker -->
+                <div class="card">
+                  <h3 class="panel-section-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                    Evidence Locker
+                  </h3>
+                  <div class="upload-dropzone" id="evidence-dropzone">
+                    <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                    <div class="upload-text">
+                      <h4>Upload Proof Files</h4>
+                      <p>Drag images, email threads, PDF bank receipts</p>
+                    </div>
+                  </div>
+                  <div class="uploaded-evidence-grid" id="evidence-list-grid">
+                    <div class="evidence-file-card" id="e-mock-1">
+                      <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path></svg>
+                      <div style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">Receipt.jpg</div>
+                      <span class="evidence-file-delete" onclick="document.getElementById('e-mock-1').remove()">×</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- AI Risk Analyzer -->
+                <div class="card">
+                  <h3 class="panel-section-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path><path d="M12 8v4"></path><path d="M12 16h.01"></path></svg>
+                    AI Cyber Risk Analyzer
+                  </h3>
+                  <p class="progress-label" style="margin-bottom: 12px; line-height: 1.5;">
+                    Analyzing transaction route for disputed merchant <strong>GlobalTechStore</strong>:
+                  </p>
+                  <div class="security-item" style="border-color: rgba(238, 93, 93, 0.2)">
+                    <div class="security-left">
+                      <div class="security-title" style="color:var(--accent-coral); font-weight:700;">Critical Risk: High</div>
+                    </div>
+                    <span class="security-status-badge" style="background:rgba(238, 93, 93, 0.1); color:var(--accent-coral)">Merchant flagged</span>
+                  </div>
+                  <p class="progress-label" style="font-size: 0.8rem;">
+                    Merchant shows multiple disputed transactions within the last 48 hours. Secure HDFC credit account immediately.
+                  </p>
+                </div>
+
+                <!-- Complaint Assistant -->
+                <div class="card">
+                  <h4 style="font-family: var(--font-heading); margin-bottom: 12px; font-size: 1rem;">Auto-Generate Redress letters</h4>
+                  <button class="btn btn-secondary" style="width: 100%; margin-bottom: 10px;" id="btn-gen-fraud-bank">HDFC Dispute Letter</button>
+                  <button class="btn btn-primary" style="width: 100%" id="btn-gen-fraud-govt">National Cyber Complaint</button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- 5. LOST DOCUMENT DASHBOARD -->
+          <div id="view-lost-documents" class="dashboard-view">
+            <div class="dashboard-grid-split">
+              
+              <div class="dashboard-panel-left">
+                <!-- Document Selection -->
+                <div class="card">
+                  <h3 class="panel-section-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="9" x2="15" y2="9"></line><line x1="9" y1="13" x2="15" y2="13"></line><line x1="9" y1="17" x2="13" y2="17"></line></svg>
+                    Select Lost Document
+                  </h3>
+                  <div class="document-selection-grid" id="doc-selection-tabs">
+                    <div class="doc-select-card active" data-doc="aadhaar">
+                      <svg viewBox="0 0 24 24"><path d="M12 2c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2zm1 10h3l-4-4-4 4h3v4h2v-4z"/></svg>
+                      <h4>Aadhaar</h4>
+                    </div>
+                    <div class="doc-select-card" data-doc="pan">
+                      <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"></rect><line x1="7" y1="8" x2="17" y2="8"></line><line x1="7" y1="12" x2="17" y2="12"></line><line x1="7" y1="16" x2="13" y2="16"></line></svg>
+                      <h4>PAN Card</h4>
+                    </div>
+                    <div class="doc-select-card" data-doc="passport">
+                      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                      <h4>Passport</h4>
+                    </div>
+                    <div class="doc-select-card" data-doc="license">
+                      <svg viewBox="0 0 24 24"><circle cx="10" cy="10" r="7"></circle><path d="M21 21l-6-6M10 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+                      <h4>License</h4>
+                    </div>
+                  </div>
+
+                  <!-- Guide details dynamically changed -->
+                  <div class="document-guide-content" id="doc-guide-box">
+                    <h4 id="doc-guide-title" style="margin-bottom: 12px; font-family: var(--font-heading);">Aadhaar Card recovery protocol</h4>
+                    <div class="info-row">
+                      <span class="info-label">Official Portal</span>
+                      <span class="info-value"><a href="https://myaadhaar.uidai.gov.in" target="_blank" style="color:var(--accent-gold); text-decoration:none;">myaadhaar.uidai.gov.in ↗</a></span>
+                    </div>
+                    <div class="info-row">
+                      <span class="info-label">Required Credentials</span>
+                      <span class="info-value">Aadhaar Number or Enrolment ID, Registered Mobile OTP</span>
+                    </div>
+                    <div class="info-row">
+                      <span class="info-label">Govt Recovery Fee</span>
+                      <span class="info-value">₹ 50.00 (Standard download/reprint fee)</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Form Assistant -->
+                <div class="card">
+                  <h3 class="panel-section-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+                    AI Form Autofill Assistant
+                  </h3>
+                  <p class="progress-label" style="margin-bottom: 16px;">Supply missing profile tokens. Guardian AI will pre-populate request applications and affidavits.</p>
+                  
+                  <div class="form-grid">
+                    <div class="form-group">
+                      <label>Full Name on Document</label>
+                      <input type="text" class="form-input" id="doc-input-fullname" value="Saksh Audichya">
+                    </div>
+                    <div class="form-group">
+                      <label>Document Number (If known)</label>
+                      <input type="text" class="form-input" id="doc-input-docnumber" value="9845 1209 8374">
+                    </div>
+                    <div class="form-group">
+                      <label>Father's Name</label>
+                      <input type="text" class="form-input" id="doc-input-father" placeholder="Father's Full Name">
+                    </div>
+                    <div class="form-group">
+                      <label>State of Issuance</label>
+                      <input type="text" class="form-input" id="doc-input-state" value="Rajasthan">
+                    </div>
+                  </div>
+                  
+                  <button class="btn btn-primary" style="margin-top: 20px; width: 100%;" id="btn-gen-doc-affidavit">
+                    Generate Loss Affidavit & Letter
+                  </button>
+                </div>
+              </div>
+
+              <!-- Status Tracker Timeline -->
+              <div class="dashboard-panel-right">
+                <div class="card">
+                  <h3 class="panel-section-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path><path d="M12 6v6l4 2"></path></svg>
+                    Tracking History
+                  </h3>
+                  
+                  <div class="timeline" id="document-timeline">
+                    <div class="timeline-step completed">
+                      <div class="timeline-node"></div>
+                      <div class="timeline-content">
+                        <h4>Loss Identified & Reported</h4>
+                        <p>Case registered in Guardian Vault database.</p>
+                        <div class="timeline-date">Today, 01:45 AM</div>
+                      </div>
+                    </div>
+                    <div class="timeline-step active">
+                      <div class="timeline-node"></div>
+                      <div class="timeline-content">
+                        <h4>Drafting Recovery Affidavit</h4>
+                        <p>Compile document numbers and prepare UIDAI loss request letter.</p>
+                        <div class="timeline-date">Processing</div>
+                      </div>
+                    </div>
+                    <div class="timeline-step">
+                      <div class="timeline-node"></div>
+                      <div class="timeline-content">
+                        <h4>UIDAI Portal Submission</h4>
+                        <p>Authenticate with mobile OTP and request reprint copy.</p>
+                        <div class="timeline-date">Pending Action</div>
+                      </div>
+                    </div>
+                    <div class="timeline-step">
+                      <div class="timeline-node"></div>
+                      <div class="timeline-content">
+                        <h4>Delivery of Duplicate Document</h4>
+                        <p>Postal tracking updates will render here.</p>
+                        <div class="timeline-date">Pending Action</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- 6. MISSED TRAIN / TRAVEL DASHBOARD -->
+          <div id="view-travel-emergency" class="dashboard-view">
+            <div class="dashboard-grid-split">
+              
+              <div class="dashboard-panel-left">
+                <!-- Journey Details -->
+                <div class="card">
+                  <h3 class="panel-section-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line></svg>
+                    Original Schedule Details
+                  </h3>
+                  <div class="form-grid">
+                    <div class="form-group">
+                      <label>Train/Flight Number</label>
+                      <input type="text" class="form-input" id="travel-input-number" value="Rajdhani Express (12951)">
+                    </div>
+                    <div class="form-group">
+                      <label>From Station</label>
+                      <input type="text" class="form-input" id="travel-input-source" value="Mumbai Central (MMCT)">
+                    </div>
+                    <div class="form-group">
+                      <label>To Destination</label>
+                      <input type="text" class="form-input" id="travel-input-dest" value="New Delhi (NDLS)">
+                    </div>
+                    <div class="form-group">
+                      <label>Scheduled Departure</label>
+                      <input type="text" class="form-input" id="travel-input-time" value="Today, 17:00 PM">
+                    </div>
+                  </div>
+                </div>
+
+                <!-- AI Solutions -->
+                <div class="card">
+                  <h3 class="panel-section-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                    AI Rerouting Solutions
+                  </h3>
+                  <p class="progress-label" style="margin-bottom: 16px;">Alternative routes discovered via nearby stations. Select one to generate dynamic help cards.</p>
+                  
+                  <div style="overflow-x: auto;">
+                    <table class="travel-table" id="travel-solutions-table">
+                      <thead>
+                        <tr>
+                          <th>Transport</th>
+                          <th>Departure</th>
+                          <th>Duration</th>
+                          <th>Route</th>
+                          <th>Status</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr style="cursor: pointer;" onclick="alert('AI recommendation locked. Booking assistant loading...')">
+                          <td><strong>August Kranti (12953)</strong></td>
+                          <td>17:40 PM</td>
+                          <td>16h 15m</td>
+                          <td><span class="badge-route">Via MMCT</span></td>
+                          <td style="color:var(--accent-green)">Available (32 seats)</td>
+                        </tr>
+                        <tr style="cursor: pointer;" onclick="alert('AI recommendation locked. Booking assistant loading...')">
+                          <td><strong>Golden Temple Mail (12903)</strong></td>
+                          <td>18:45 PM</td>
+                          <td>18h 30m</td>
+                          <td><span class="badge-route">Via Bandra</span></td>
+                          <td style="color:var(--accent-gold)">RAC status</td>
+                        </tr>
+                        <tr style="cursor: pointer;" onclick="alert('Direct flight options compiled. Redirecting to airline partner...')">
+                          <td><strong>IndiGo Flight 6E-2015</strong></td>
+                          <td>20:15 PM</td>
+                          <td>2h 10m</td>
+                          <td><span class="badge-route">BOM to DEL</span></td>
+                          <td style="color:var(--accent-green)">Available (9 seats)</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+
+              <div class="dashboard-panel-right">
+                <!-- Railway official portals -->
+                <div class="card">
+                  <h3 class="panel-section-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                    Direct Helpline Support
+                  </h3>
+                  <p class="progress-label" style="margin-bottom: 16px;">Execute direct actions or contact transit help desks immediately.</p>
+                  
+                  <button class="btn btn-secondary" style="width: 100%; margin-bottom: 10px;" onclick="window.open('tel:139')">Call Railway Helpline (139)</button>
+                  <button class="btn btn-secondary" style="width: 100%; margin-bottom: 10px;" onclick="window.open('https://www.irctc.co.in')">Open IRCTC Portal</button>
+                  <button class="btn btn-secondary" style="width: 100%;" onclick="window.open('https://pgportal.gov.in')">Lodge RailMadad Complaint</button>
+                </div>
+
+                <!-- Travel visualizer timeline -->
+                <div class="card">
+                  <h3 class="panel-section-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"></polygon></svg>
+                    Current Travel Disruption
+                  </h3>
+                  <div class="timeline">
+                    <div class="timeline-step completed">
+                      <div class="timeline-node"></div>
+                      <div class="timeline-content">
+                        <h4>Missed Train Registered</h4>
+                        <p>Location detects user is outside MMCT platform while train departed.</p>
+                        <div class="timeline-date">Today, 17:05 PM</div>
+                      </div>
+                    </div>
+                    <div class="timeline-step active">
+                      <div class="timeline-node"></div>
+                      <div class="timeline-content">
+                        <h4>Rerouting Alternatives Discovered</h4>
+                        <p>3 alternative trains and flights loaded in central dashboard.</p>
+                        <div class="timeline-date">Now</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- 7. FAKE CONTENT DETECTOR DASHBOARD -->
+          <div id="view-fake-detector" class="dashboard-view">
+            <div class="dashboard-grid-split">
+              
+              <div class="dashboard-panel-left">
+                <!-- Dropzone upload -->
+                <div class="card">
+                  <h3 class="panel-section-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                    Investigation Laboratory
+                  </h3>
+                  <p class="progress-label" style="margin-bottom: 16px;">Drop screenshots, deepfake recordings, suspicious email text, or media links to verify integrity.</p>
+                  
+                  <div class="upload-dropzone" id="fake-dropzone">
+                    <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                    <div class="upload-text">
+                      <h4>Drop Media File or Paste URL</h4>
+                      <p>Image, Video, News screenshot or Social Web Link</p>
+                    </div>
+                  </div>
+                  
+                  <div class="scanning-bar-animation" id="fake-scan-bar"></div>
+                  
+                  <div class="form-group" style="margin-top: 16px;">
+                    <label>Or Paste URL Link</label>
+                    <div style="display:flex; gap:10px;">
+                      <input type="text" class="form-input" id="fake-input-url" placeholder="https://socialmedia.com/news/viral-article-token">
+                      <button class="btn btn-primary" id="btn-fake-scan">Scan Link</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="dashboard-panel-right">
+                <!-- Analysis results -->
+                <div class="card" id="fake-analysis-results" style="display: none;">
+                  <h3 class="panel-section-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                    Analysis Diagnostic Result
+                  </h3>
+                  
+                  <div class="scan-result-container">
+                    <div class="gauge-svg">
+                      <svg width="180" height="90">
+                        <path class="gauge-bg" d="M 20 80 A 60 60 0 0 1 160 80"></path>
+                        <path id="gauge-risk-fill" class="gauge-fill" d="M 20 80 A 60 60 0 0 1 160 80"></path>
+                      </svg>
+                      <div class="gauge-text">
+                        <span class="gauge-percentage" id="gauge-risk-percent">82%</span>
+                        <span class="gauge-label">Fake Score</span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="security-item" style="border-color: rgba(238, 93, 93, 0.2); margin-top:20px;">
+                    <div class="security-left">
+                      <div class="security-title" style="color:var(--accent-coral); font-weight:700;">Alert: High Risk of Alteration</div>
+                    </div>
+                  </div>
+                  
+                  <div class="fake-reasons-list">
+                    <div class="fake-reason-item">
+                      <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                      <div>Metadata patterns indicate AI synthesis (Stable Diffusion/Midjourney artifacts).</div>
+                    </div>
+                    <div class="fake-reason-item">
+                      <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                      <div>Image shadows and neural face geometry show manipulation signs.</div>
+                    </div>
+                  </div>
+
+                  <div style="margin-top:20px; border-top:1px solid var(--card-border); padding-top:16px;">
+                    <h4 style="font-size:0.85rem; font-weight:600; margin-bottom:8px;">Source Trust Score</h4>
+                    <div class="info-row">
+                      <span class="info-label">Domain Reputation</span>
+                      <span class="info-value" style="color:var(--accent-coral)">Untrusted (12/100)</span>
+                    </div>
+                    <div class="info-row">
+                      <span class="info-label">Known Fact Checks</span>
+                      <span class="info-value">Flagged by AltNews & PIB Fact Check</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- 8. EMERGENCY PROFILE DASHBOARD (SAFETY VAULT) -->
+          <div id="view-safety-profile" class="dashboard-view">
+            <div class="dashboard-grid-split">
+              
+              <div class="dashboard-panel-left">
+                <!-- Personal Vault Contacts -->
+                <div class="card">
+                  <h3 class="panel-section-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                    Emergency Contacts List
+                  </h3>
+                  <p class="progress-label" style="margin-bottom: 16px;">These contacts receive automated SMS pings when emergency status is activated.</p>
+                  
+                  <div class="contacts-grid">
+                    <div class="contact-card-input">
+                      <input type="text" class="form-input" placeholder="Relation e.g. Mother" value="Mother (Alka Audichya)">
+                      <input type="text" class="form-input" placeholder="Phone Number" value="+91 94142 83748">
+                    </div>
+                    <div class="contact-card-input">
+                      <input type="text" class="form-input" placeholder="Relation e.g. Spouse" value="Father (K. Audichya)">
+                      <input type="text" class="form-input" placeholder="Phone Number" value="+91 94142 98471">
+                    </div>
+                    <div class="contact-card-input">
+                      <input type="text" class="form-input" placeholder="Relation e.g. Friend" value="Brother (V. Audichya)">
+                      <input type="text" class="form-input" placeholder="Phone Number" value="+91 82390 12048">
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Backup settings -->
+                <div class="card">
+                  <h3 class="panel-section-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                    Security & Vault Preferences
+                  </h3>
+                  <div class="form-grid">
+                    <div class="form-group full-width">
+                      <label>AI Autonomous Level</label>
+                      <select class="form-input">
+                        <option>Full Assistance (Auto-generate letters, ping contacts)</option>
+                        <option>Semi-Autonomous (Confirm draft before sending)</option>
+                        <option>Manual Only (Read guidelines, generate on click)</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label>Data Decryption Passkey</label>
+                      <input type="password" class="form-input" value="••••••••••••••">
+                    </div>
+                    <div class="form-group">
+                      <label>Geofence Alert Radius</label>
+                      <input type="text" class="form-input" value="500 meters">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="dashboard-panel-right">
+                <!-- Saved devices list -->
+                <div class="card">
+                  <h3 class="panel-section-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+                    Registered Vault Devices
+                  </h3>
+                  
+                  <div class="security-item">
+                    <div class="security-left">
+                      <div class="security-app-icon">📱</div>
+                      <div class="security-title">iPhone 14 Pro Max</div>
+                    </div>
+                    <span class="security-status-badge badge-safe">Active</span>
+                  </div>
+
+                  <div class="security-item">
+                    <div class="security-left">
+                      <div class="security-app-icon">💻</div>
+                      <div class="security-title">MacBook Pro M2</div>
+                    </div>
+                    <span class="security-status-badge badge-safe">Active</span>
+                  </div>
+                </div>
+
+                <!-- Reminders/Alerts -->
+                <div class="card">
+                  <h3 class="panel-section-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                    Safety Reminders
+                  </h3>
+                  <ul class="progress-label" style="padding-left:16px; line-height: 1.6;">
+                    <li>Ensure backup eSIM tokens are generated with your carrier.</li>
+                    <li>Update government documents vault every 6 months.</li>
+                    <li>Check credentials storage passphrase expiration.</li>
+                  </ul>
+                  <button class="btn btn-primary" style="margin-top: 20px; width: 100%;" id="btn-save-profile">Save Vault Changes</button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- 9. CASE HISTORY VIEW -->
+          <div id="view-history" class="dashboard-view">
+            <div class="card">
+              <h3 class="panel-section-title">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                Emergency Response Archive Logs
+              </h3>
+              <p class="progress-label" style="margin-bottom: 20px;">Review past emergencies, response logs, and recovery outcomes.</p>
+              
+              <div style="overflow-x: auto;">
+                <table class="travel-table">
+                  <thead>
+                    <tr>
+                      <th>Case ID</th>
+                      <th>Incident Category</th>
+                      <th>Priority</th>
+                      <th>Action Status</th>
+                      <th>Completion Date</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>#GUA-40291</strong></td>
+                      <td>Lost Aadhaar Card</td>
+                      <td>Medium</td>
+                      <td style="color:var(--accent-green)">Duplicate Delivered</td>
+                      <td>May 24, 2026</td>
+                    </tr>
+                    <tr>
+                      <td><strong>#GUA-39012</strong></td>
+                      <td>Credit Card Fraud dispute</td>
+                      <td>Critical</td>
+                      <td style="color:var(--accent-green)">Funds Disputed & Restored</td>
+                      <td>April 12, 2026</td>
+                    </tr>
+                    <tr>
+                      <td><strong>#GUA-35048</strong></td>
+                      <td>Lost Phone Recovery</td>
+                      <td>High</td>
+                      <td style="color:var(--accent-green)">SIM Blocked, Device Wiped</td>
+                      <td>Feb 08, 2026</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </main>
+    </div>
+
+  </div>
+
+  <!-- FLOATING AI ASSISTANT CHAT TRIGGER -->
+  <div id="ai-chat-trigger" class="hidden">
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+    </svg>
+  </div>
+
+  <!-- FLOATING AI ASSISTANT CHAT PANEL -->
+  <div id="ai-chat-panel">
+    <div class="chat-header">
+      <div class="chat-header-info">
+        <div class="chat-avatar-glow"></div>
+        <div>
+          <h4 class="chat-title">Guardian Agent</h4>
+          <span class="chat-subtitle">Active Assistant • Secure Link</span>
+        </div>
+      </div>
+      <button class="chat-close-btn" id="btn-chat-close">
+        <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
+    
+    <div class="chat-messages" id="chat-messages-container">
+      <div class="chat-bubble bot">
+        Hello! I'm your active Guardian Agent. In case of an emergency, click any action or describe your situation to get immediate response checklists and legal letter drafts.
+      </div>
+    </div>
+
+    <!-- Quick Reply Container -->
+    <div class="chat-quick-replies" id="chat-suggested-replies">
+      <button class="quick-reply-btn">SIM Card Blocked?</button>
+      <button class="quick-reply-btn">Bank Chargeback Help</button>
+      <button class="quick-reply-btn">Need Police FIR Template</button>
+    </div>
+    
+    <div class="chat-input-area">
+      <input type="text" class="chat-input" id="chat-message-input" placeholder="Ask anything to your Guardian AI...">
+      <button class="chat-send-btn" id="btn-chat-send">
+        <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- MODAL DIALOGS -->
+  <div class="modal-overlay" id="document-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-title" id="modal-doc-title">Document Preview</div>
+        <button class="chat-close-btn" id="btn-modal-close" style="width:30px; height:30px;">
+          <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre class="document-pre" id="modal-doc-content">Loading document...</pre>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="btn-doc-copy">Copy to Clipboard</button>
+        <button class="btn btn-primary" id="btn-doc-download">Download Text File</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div class="toast-notification" id="toast-message">
+    <svg class="toast-icon" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+    <span id="toast-text">Action completed successfully</span>
+  </div>
+
+  <!-- JavaScript application file -->
+  <script src="app.js"></script>
+</body>
+</html>
